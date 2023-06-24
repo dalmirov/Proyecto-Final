@@ -15,7 +15,7 @@ const inputFiltar = document.querySelector('#input-filtro');
 const btnFiltro = document.querySelector('#filtro');
 let productosCarrito = [];
  
-/* const Toast=Swal.mixin({
+const Toast=Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
@@ -23,7 +23,7 @@ let productosCarrito = [];
     color: 'whitesmoke',
     timer: 1000,
     timerProgressBar: true,
-}); */
+});
 
 class Producto {
     constructor(imagen, nombre, precio, id) {
