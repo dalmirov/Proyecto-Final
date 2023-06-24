@@ -1,3 +1,4 @@
+const url = 'https://raw.githubusercontent.com/dalmirov/Proyecto-Final/main/data/productos.json';
 const file = './data/productos.json';
 const containerProducts = document.getElementById('container-products');
 const modal = document.getElementById('ventana-modal');
@@ -13,8 +14,8 @@ const vaciarCarrito = document.querySelector('#vaciar-carrito');
 const inputFiltar = document.querySelector('#input-filtro');
 const btnFiltro = document.querySelector('#filtro');
 let productosCarrito = [];
-
-const Toast = Swal.mixin({
+ 
+/* const Toast=Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
@@ -22,7 +23,7 @@ const Toast = Swal.mixin({
     color: 'whitesmoke',
     timer: 1000,
     timerProgressBar: true,
-});
+}); */
 
 class Producto {
     constructor(imagen, nombre, precio, id) {
@@ -248,7 +249,21 @@ function guardarProductosLocalStorage() {
     localStorage.setItem('productosLS', JSON.stringify(productosCarrito));
 }
 
+async function realizarPeticion(datos) {
+    try {
+        const response = await fetch(datos);
 
+        if (!response.ok) {
+            throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+    } finally {
+    }
+}
 
 async function renderizarProductos() {
        const productos = await realizarPeticion(file);
